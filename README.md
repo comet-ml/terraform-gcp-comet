@@ -1,4 +1,4 @@
-# Comet Infrastructure Deployment: Terraform on AWS
+# Comet Infrastructure Deployment: Terraform on GCP
 Terraform module for deploying infrastructure components to run CometML.
 
 ### Deployment
@@ -11,7 +11,7 @@ Terraform module for deploying infrastructure components to run CometML.
 
 **Infrastructure Deployment:**
 - To deploy directly from this repository, follow the steps below.
-  - Clone the repository to your local machine: `git clone https://github.com/comet-ml/dply-terraform-gcp.git`
+  - Clone the repository to your local machine: `git clone https://github.com/comet-ml/terraform-gcp-comet.git`
   - Move into the deployment directory: `cd dply-terraform-gcp/comet-infrastructure`
   - Initialize the directory: `terraform init`
   - Within terraform.tfvars, set your module toggles to enable the desired infrastructure components and set any required environment variables
