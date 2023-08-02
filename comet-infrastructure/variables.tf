@@ -392,7 +392,7 @@ variable "db_random_instance_name" {
 variable "db_deletion_protection" {
   description = "Used to block Terraform from deleting a SQL Instance"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "db_version" {
