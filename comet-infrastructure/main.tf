@@ -139,9 +139,9 @@ module "comet_vpc" {
   region      = var.region
   environment = var.environment
 
-  vpc_subnet_cidr      = var.vpc_subnet_cidr
+  vpc_subnet_cidr           = var.vpc_subnet_cidr
   vpc_subnet_private_access = var.vpc_subnet_private_access
-  vpc_subnet_flow_logs = var.vpc_subnet_flow_logs
-  gke_pods_cidr        = var.gke_pods_cidr
-  gke_services_cidr    = var.gke_services_cidr
+  vpc_subnet_flow_logs      = var.vpc_subnet_flow_logs
+  gke_pods_cidr             = var.gke_pods_cidr
+  gke_services_cidr         = var.gke_services_cidr
 }
