@@ -54,3 +54,34 @@ module "gke" {
     ]
   }
 }
+
+resource "google_service_account" "gcp-proxy-svs-account" {
+  account_id   = "gcp-proxy-svs-account"
+  display_name = "gcp-proxy-svs-account"
+}
+
+resource "google_project_iam_member" "sa_sql_client_binding" {
+  project = var.project_id
+  role    = "roles/cloudsql.client"
+  member  = "serviceAccount:${google_service_account.gcp-proxy-svs-account.email}"
+}
+
+resource "google_service_account_key" "gcp-proxy-svs-account-key" {
+  service_account_id = google_service_account.gcp-proxy-svs-account.name
+}
+
+resource "kubernetes_namespace" "cometml" {
+  metadata {
+    name = "cometml"
+  }
+}
+
+resource "kubernetes_secret" "gcp-proxy-svs-account-secret" {
+  metadata {
+    name      = "gcp-proxy-svs-account.json"
+    namespace = kubernetes_namespace.cometml.metadata[0].name
+  }
+  data = {
+    "gcp-proxy-svs-account.json" = base64decode(google_service_account_key.gcp-proxy-svs-account-key.private_key)
+  }
+}

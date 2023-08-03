@@ -28,6 +28,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_enable_mysql"></a> [enable\_mysql](#input\_enable\_mysql) | Passed in from root configuration to indicate if VM will be used with instance from MySQL module | `bool` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Name for the Comet environment, for use in resource naming | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID of the project that resources will be provisioned in | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region that resources will be launched in | `string` | n/a | yes |
@@ -36,6 +37,7 @@
 | <a name="input_vm_disk_type"></a> [vm\_disk\_type](#input\_vm\_disk\_type) | Storage disk type for the VM | `string` | n/a | yes |
 | <a name="input_vm_enable_ssh"></a> [vm\_enable\_ssh](#input\_vm\_enable\_ssh) | Set to allow SSH traffic to the VM | `bool` | n/a | yes |
 | <a name="input_vm_machine_type"></a> [vm\_machine\_type](#input\_vm\_machine\_type) | Machine type for the VM | `string` | n/a | yes |
+| <a name="input_vm_mysql_connection_name"></a> [vm\_mysql\_connection\_name](#input\_vm\_mysql\_connection\_name) | Connection name for the MySQL instance | `string` | n/a | yes |
 | <a name="input_vm_source_image_family"></a> [vm\_source\_image\_family](#input\_vm\_source\_image\_family) | Operating system family for the VM | `string` | n/a | yes |
 | <a name="input_vm_subnetwork"></a> [vm\_subnetwork](#input\_vm\_subnetwork) | Name of the VPC subnet that the VM will be provisioned in | `string` | n/a | yes |
 | <a name="input_vm_vpc"></a> [vm\_vpc](#input\_vm\_vpc) | Name of the VPC that the VM will be provisioned in | `string` | n/a | yes |

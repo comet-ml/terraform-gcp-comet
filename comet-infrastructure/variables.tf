@@ -161,7 +161,7 @@ variable "gke_http_load_balancing" {
 variable "gke_network_policy" {
   description = "Enables network policy usage in the GKE cluster"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "gke_network_policy_provider" {
@@ -392,7 +392,7 @@ variable "db_random_instance_name" {
 variable "db_deletion_protection" {
   description = "Used to block Terraform from deleting a SQL Instance"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "db_version" {

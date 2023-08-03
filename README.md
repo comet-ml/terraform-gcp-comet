@@ -60,7 +60,7 @@ Terraform module for deploying infrastructure components to run CometML.
 | <a name="input_comet_vpc_subnet_name"></a> [comet\_vpc\_subnet\_name](#input\_comet\_vpc\_subnet\_name) | Name for the existing subnet that resources will be provisioned in | `string` | `null` | no |
 | <a name="input_comet_vpc_zones"></a> [comet\_vpc\_zones](#input\_comet\_vpc\_zones) | Compute zones to use within the region | `list(string)` | `null` | no |
 | <a name="input_db_assign_public_ip"></a> [db\_assign\_public\_ip](#input\_db\_assign\_public\_ip) | Enables giving the master instance a public IP address | `bool` | `true` | no |
-| <a name="input_db_deletion_protection"></a> [db\_deletion\_protection](#input\_db\_deletion\_protection) | Used to block Terraform from deleting a SQL Instance | `bool` | `true` | no |
+| <a name="input_db_deletion_protection"></a> [db\_deletion\_protection](#input\_db\_deletion\_protection) | Used to block Terraform from deleting a SQL Instance | `bool` | `false` | no |
 | <a name="input_db_instance_tier"></a> [db\_instance\_tier](#input\_db\_instance\_tier) | The tier for the master instance | `string` | `"db-n1-standard-16"` | no |
 | <a name="input_db_password"></a> [db\_password](#input\_db\_password) | Password for database user account | `string` | `null` | no |
 | <a name="input_db_random_instance_name"></a> [db\_random\_instance\_name](#input\_db\_random\_instance\_name) | Sets random suffix at the end of the Cloud SQL resource name | `bool` | `true` | no |
@@ -81,7 +81,7 @@ Terraform module for deploying infrastructure components to run CometML.
 | <a name="input_gke_horizontal_pod_autoscaling"></a> [gke\_horizontal\_pod\_autoscaling](#input\_gke\_horizontal\_pod\_autoscaling) | Enables horizontal pod autoscaling in the GKE cluster | `bool` | `true` | no |
 | <a name="input_gke_http_load_balancing"></a> [gke\_http\_load\_balancing](#input\_gke\_http\_load\_balancing) | Enables the load balancer controller in the GKE cluster | `bool` | `true` | no |
 | <a name="input_gke_kubernetes_version"></a> [gke\_kubernetes\_version](#input\_gke\_kubernetes\_version) | Kubernetes version to use in the GKE cluster | `string` | `"latest"` | no |
-| <a name="input_gke_network_policy"></a> [gke\_network\_policy](#input\_gke\_network\_policy) | Enables network policy usage in the GKE cluster | `bool` | `true` | no |
+| <a name="input_gke_network_policy"></a> [gke\_network\_policy](#input\_gke\_network\_policy) | Enables network policy usage in the GKE cluster | `bool` | `false` | no |
 | <a name="input_gke_network_policy_provider"></a> [gke\_network\_policy\_provider](#input\_gke\_network\_policy\_provider) | Network policy provider to use in the GKE cluster | `string` | `"CALICO"` | no |
 | <a name="input_gke_nodepool_auto_repair"></a> [gke\_nodepool\_auto\_repair](#input\_gke\_nodepool\_auto\_repair) | Enables GKE nodepool autorepair | `bool` | `true` | no |
 | <a name="input_gke_nodepool_auto_upgrade"></a> [gke\_nodepool\_auto\_upgrade](#input\_gke\_nodepool\_auto\_upgrade) | Enables GKE nodepool autoupgrade | `bool` | `true` | no |
