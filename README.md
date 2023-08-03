@@ -106,6 +106,7 @@ Terraform module for deploying infrastructure components to run CometML.
 | <a name="input_lb_backend_instance_group"></a> [lb\_backend\_instance\_group](#input\_lb\_backend\_instance\_group) | Compute managed instance group to serve as backend for the load balancer | `string` | `null` | no |
 | <a name="input_lb_backend_service_logging"></a> [lb\_backend\_service\_logging](#input\_lb\_backend\_service\_logging) | Enables logging for the load balancer requests to backend | `bool` | `false` | no |
 | <a name="input_lb_backend_timeout_sec"></a> [lb\_backend\_timeout\_sec](#input\_lb\_backend\_timeout\_sec) | Timeout in seconds for backend connections | `number` | `10` | no |
+| <a name="input_lb_cloudnat_router_name"></a> [lb\_cloudnat\_router\_name](#input\_lb\_cloudnat\_router\_name) | Name of the router used for Cloud NAT | `string` | `null` | no |
 | <a name="input_lb_enable_iap_config"></a> [lb\_enable\_iap\_config](#input\_lb\_enable\_iap\_config) | Enables using identity-aware proxy with the load balancer | `bool` | `false` | no |
 | <a name="input_lb_enable_ssl"></a> [lb\_enable\_ssl](#input\_lb\_enable\_ssl) | Enables SSL support on the load balancer | `bool` | `false` | no |
 | <a name="input_lb_health_check_logging"></a> [lb\_health\_check\_logging](#input\_lb\_health\_check\_logging) | Enables logging for the load balancer health checks | `bool` | `false` | no |
@@ -133,6 +134,7 @@ Terraform module for deploying infrastructure components to run CometML.
 | <a name="input_vm_source_image_family"></a> [vm\_source\_image\_family](#input\_vm\_source\_image\_family) | Operating system family for the VM | `string` | `"ubuntu-2204-lts"` | no |
 | <a name="input_vpc_subnet_cidr"></a> [vpc\_subnet\_cidr](#input\_vpc\_subnet\_cidr) | Network CIDR block for the provisioned VPC subnet | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vpc_subnet_flow_logs"></a> [vpc\_subnet\_flow\_logs](#input\_vpc\_subnet\_flow\_logs) | Enables flow logs for the provisioned VPC | `bool` | `false` | no |
+| <a name="input_vpc_subnet_private_access"></a> [vpc\_subnet\_private\_access](#input\_vpc\_subnet\_private\_access) | Enables resources in VPC without public IPs to access Google APIs and services | `bool` | `true` | no |
 
 ## Outputs
 
