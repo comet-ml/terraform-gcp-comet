@@ -14,7 +14,7 @@ module "gce-app-lb" {
 
   target_tags = [
     "${local.resource_name}",
-    module.cloud-nat-group.router_name
+    "${var.lb_cloudnat_router_name}"
   ]
   firewall_networks = [var.lb_vpc]
   backends = {
@@ -48,18 +48,4 @@ module "gce-app-lb" {
       }
     }
   }
-}
-
-resource "google_compute_router" "comet-mig-router" {
-  name    = "${local.resource_name}-gw"
-  network = var.lb_vpc
-  region  = var.region
-}
-
-module "cloud-nat-group" {
-  source     = "terraform-google-modules/cloud-nat/google"
-  router     = google_compute_router.comet-mig-router.name
-  project_id = var.project_id
-  region     = var.region
-  name       = "${local.resource_name}-cloud-nat"
 }

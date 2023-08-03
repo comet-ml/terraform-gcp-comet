@@ -303,6 +303,12 @@ variable "lb_provided_ssl_certificates" {
   default     = []
 }
 
+variable "lb_cloudnat_router_name" {
+  description = "Name of the router used for Cloud NAT"
+  type        = string
+  default     = null
+}
+
 variable "lb_backend_timeout_sec" {
   description = "Timeout in seconds for backend connections"
   type        = number
@@ -496,6 +502,12 @@ variable "vpc_subnet_cidr" {
   description = "Network CIDR block for the provisioned VPC subnet"
   type        = string
   default     = "10.0.0.0/16"
+}
+
+variable "vpc_subnet_private_access" {
+  description = "Enables resources in VPC without public IPs to access Google APIs and services"
+  type        = bool
+  default     = true
 }
 
 variable "vpc_subnet_flow_logs" {

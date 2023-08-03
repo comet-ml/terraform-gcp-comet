@@ -33,6 +33,11 @@ variable "lb_provided_ssl_certificates" {
   type        = list(string)
 }
 
+variable "lb_cloudnat_router_name" {
+  description = "Name of the router used for Cloud NAT"
+  type        = string
+}
+
 variable "lb_vpc" {
   description = "Name of the VPC that the load balancer will be provisioned in"
   type        = string

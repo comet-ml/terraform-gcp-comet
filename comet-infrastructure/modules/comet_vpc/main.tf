@@ -15,7 +15,7 @@ module "vpc" {
       subnet_name           = "${local.resource_name}-subnet"
       subnet_ip             = var.vpc_subnet_cidr
       subnet_region         = var.region
-      subnet_private_access = false
+      subnet_private_access = var.vpc_subnet_private_access
       subnet_flow_logs      = var.vpc_subnet_flow_logs
     }
   ]
@@ -34,10 +34,16 @@ module "vpc" {
   }
 }
 
+resource "google_compute_router" "comet-router" {
+  name    = "${local.resource_name}-gw"
+  network = module.vpc.network_name
+  region  = var.region
+}
 
-
-
-
-
-
-
+module "cloud_nat_group" {
+  source     = "terraform-google-modules/cloud-nat/google"
+  router     = google_compute_router.comet-router.name
+  project_id = var.project_id
+  region     = var.region
+  name       = "${local.resource_name}-cloud-nat"
+}

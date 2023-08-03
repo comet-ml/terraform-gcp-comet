@@ -22,3 +22,8 @@ output "gke_services_cidr_name" {
   description = "Generated name of the secondary IP range provisioned for GKE services"
   value       = module.vpc.subnets_secondary_ranges[0][1].range_name
 }
+
+output "vpc_cloudnat_router_name" {
+  description = "Name of the router used for Cloud NAT"
+  value       = module.cloud_nat_group.router_name
+}

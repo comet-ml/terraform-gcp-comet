@@ -7,22 +7,17 @@
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | >= 4.51 |
+No providers.
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloud-nat-group"></a> [cloud-nat-group](#module\_cloud-nat-group) | terraform-google-modules/cloud-nat/google | n/a |
 | <a name="module_gce-app-lb"></a> [gce-app-lb](#module\_gce-app-lb) | GoogleCloudPlatform/lb-http/google | n/a |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [google_compute_router.comet-mig-router](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router) | resource |
+No resources.
 
 ## Inputs
 
@@ -33,6 +28,7 @@
 | <a name="input_lb_backend_instance_group"></a> [lb\_backend\_instance\_group](#input\_lb\_backend\_instance\_group) | Compute managed instance group to serve as backend for the load balancer | `string` | n/a | yes |
 | <a name="input_lb_backend_service_logging"></a> [lb\_backend\_service\_logging](#input\_lb\_backend\_service\_logging) | Enables logging for the load balancer requests to backend | `bool` | n/a | yes |
 | <a name="input_lb_backend_timeout_sec"></a> [lb\_backend\_timeout\_sec](#input\_lb\_backend\_timeout\_sec) | Timeout in seconds for backend connections | `number` | n/a | yes |
+| <a name="input_lb_cloudnat_router_name"></a> [lb\_cloudnat\_router\_name](#input\_lb\_cloudnat\_router\_name) | Name of the router used for Cloud NAT | `string` | n/a | yes |
 | <a name="input_lb_comet_subnet"></a> [lb\_comet\_subnet](#input\_lb\_comet\_subnet) | Name of the VPC subnet that the load balancer will be provisioned in | `string` | n/a | yes |
 | <a name="input_lb_enable_iap_config"></a> [lb\_enable\_iap\_config](#input\_lb\_enable\_iap\_config) | Enables using identity-aware proxy with the load balancer | `bool` | n/a | yes |
 | <a name="input_lb_enable_ssl"></a> [lb\_enable\_ssl](#input\_lb\_enable\_ssl) | Enables SSL support on the load balancer | `bool` | n/a | yes |
