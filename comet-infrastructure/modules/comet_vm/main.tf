@@ -25,11 +25,11 @@ module "vm_instance_template" {
         var.vm_source_image_family == "ubuntu-2004-lts" ? "ubuntu-os-cloud" : (
           var.vm_source_image_family == "ubuntu-2204-lts" ? "ubuntu-os-cloud" : (
   null)))))
-  machine_type = var.vm_machine_type
-  disk_type    = var.vm_disk_type
-  disk_size_gb = var.vm_disk_size_gb
-  auto_delete  = var.vm_disk_auto_delete
-  tags         = concat([local.resource_name], tolist(local.ssh_access))
+  machine_type   = var.vm_machine_type
+  disk_type      = var.vm_disk_type
+  disk_size_gb   = var.vm_disk_size_gb
+  auto_delete    = var.vm_disk_auto_delete
+  tags           = concat([local.resource_name], tolist(local.ssh_access))
   startup_script = var.enable_mysql ? "curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.6.0/cloud-sql-proxy.linux.amd64 && chmod +x cloud-sql-proxy && ./cloud-sql-proxy --port 3306 --private-ip ${var.vm_mysql_connection_name}" : null
 }
 
