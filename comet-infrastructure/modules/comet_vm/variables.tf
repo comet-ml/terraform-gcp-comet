@@ -13,6 +13,11 @@ variable "environment" {
   type        = string
 }
 
+variable "enable_mysql" {
+  description = "Passed in from root configuration to indicate if VM will be used with instance from MySQL module"
+  type        = bool
+}
+
 variable "vm_vpc" {
   description = "Name of the VPC that the VM will be provisioned in"
   type        = string
@@ -51,4 +56,9 @@ variable "vm_disk_auto_delete" {
 variable "vm_enable_ssh" {
   description = "Set to allow SSH traffic to the VM"
   type        = bool
+}
+
+variable "vm_mysql_connection_name" {
+  description = "Connection name for the MySQL instance"
+  type        = string
 }

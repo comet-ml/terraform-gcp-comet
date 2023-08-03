@@ -118,6 +118,7 @@ module "comet_vm" {
   project_id  = var.project_id
   region      = var.region
   environment = var.environment
+  enable_mysql = var.enable_mysql
 
   vm_vpc                 = var.enable_vpc ? module.comet_vpc[0].comet_vpc_name : var.comet_vpc_name
   vm_subnetwork          = var.enable_vpc ? module.comet_vpc[0].comet_vpc_subnet_name : var.comet_vpc_subnet_name
@@ -127,6 +128,7 @@ module "comet_vm" {
   vm_disk_size_gb        = var.vm_disk_size_gb
   vm_disk_auto_delete    = var.vm_disk_auto_delete
   vm_enable_ssh          = var.vm_enable_ssh
+  vm_mysql_connection_name = var.enable_mysql ? module.comet_mysql[0].mysql_connection_name : null
 }
 
 module "comet_vpc" {

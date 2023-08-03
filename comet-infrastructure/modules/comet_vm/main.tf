@@ -30,6 +30,7 @@ module "vm_instance_template" {
   disk_size_gb = var.vm_disk_size_gb
   auto_delete  = var.vm_disk_auto_delete
   tags         = concat([local.resource_name], tolist(local.ssh_access))
+  startup_script = var.enable_mysql ? "curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.6.0/cloud-sql-proxy.linux.amd64 && chmod +x cloud-sql-proxy && ./cloud-sql-proxy --port 3306 --private-ip ${var.vm_mysql_connection_name}" : null
 }
 
 module "managed_instance_group" {
