@@ -53,6 +53,7 @@ module "comet_lb" {
   lb_use_provided_ssl_certificates   = var.lb_use_provided_ssl_certificates
   lb_provided_ssl_certificates       = var.lb_provided_ssl_certificates
 
+  lb_cloudnat_router_name    = var.enable_vpc ? module.comet_vpc[0].vpc_cloudnat_router_name : var.lb_cloudnat_router_name
   lb_vpc                     = var.enable_vpc ? module.comet_vpc[0].comet_vpc_name : var.comet_vpc_name
   lb_comet_subnet            = var.enable_vpc ? module.comet_vpc[0].comet_vpc_subnet_name : var.comet_vpc_subnet_name
   lb_backend_instance_group  = var.enable_vm ? module.comet_vm[0].instance_group : var.lb_backend_instance_group
@@ -139,6 +140,7 @@ module "comet_vpc" {
   environment = var.environment
 
   vpc_subnet_cidr      = var.vpc_subnet_cidr
+  vpc_subnet_private_access = var.vpc_subnet_private_access
   vpc_subnet_flow_logs = var.vpc_subnet_flow_logs
   gke_pods_cidr        = var.gke_pods_cidr
   gke_services_cidr    = var.gke_services_cidr

@@ -18,6 +18,11 @@ variable "vpc_subnet_cidr" {
   type        = string
 }
 
+variable "vpc_subnet_private_access" {
+  description = "Enables resources in VPC without public IPs to access Google APIs and services"
+  type        = bool
+}
+
 variable "vpc_subnet_flow_logs" {
   description = "Enables flow logs for the provisioned VPC"
   type        = bool
