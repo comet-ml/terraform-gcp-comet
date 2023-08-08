@@ -17,6 +17,18 @@ Terraform module for deploying infrastructure components to run CometML.
   - Within terraform.tfvars, set your module toggles to enable the desired infrastructure components and set any required environment variables
   - Provision the resources: `terraform apply`
 
+**A note on state management:**
+- This configuration stores the Terraform state locally by default. To store the state file remotely in GCS, a `backend` block can be nested within the `terraform` block inside comet-infrastructure/versions.tf. Below is an example of such a configuration:
+```
+terraform {
+  backend "gcs" {
+    bucket  = "tf-state-prod"
+    prefix  = "terraform/state"
+  }
+}
+```
+- More on state management in GCS can be found [here](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)
+
 ## Requirements
 
 | Name | Version |
