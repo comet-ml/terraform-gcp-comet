@@ -157,3 +157,8 @@ variable "gke_nodepool_preemptible" {
   description = "Sets nodes as preemptible"
   type        = bool
 }
+
+variable "gke_sa_s3_bucket_name" {
+  description = "Name for GCS bucket to grant access via cluster service account"
+  type        = string
+}

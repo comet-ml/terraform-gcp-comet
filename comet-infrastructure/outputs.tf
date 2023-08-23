@@ -8,6 +8,22 @@ output "comet_gke_nodepools" {
   value       = var.enable_gke ? module.comet_gke[0].cluster_nodepools_names : null
 }
 
+output "comet_gke_service_account" {
+  description = "Service account used by the GKE nodes"
+  value       = var.enable_gke ? module.comet_gke[0].cluster_service_account : null
+}
+
+output "comet_gke_sa_hmac_access_id" {
+  description = "Access ID of the HMAC key created for the cluster service account"
+  value       = var.enable_gke ? module.comet_gke[0].cluster_sa_hmac_access_id : null
+}
+
+output "comet_gke_sa_hmac_secret" {
+  description = "Secret of the HMAC key created for the cluster service account"
+  value       = var.enable_gke ? module.comet_gke[0].cluster_sa_hmac_secret : null
+  sensitive   = true
+}
+
 output "comet_gke_configure_kubectl" {
   description = "Configure kubectl: run the following command to update your kubeconfig with the newly provisioned cluster"
   value       = var.enable_gke ? "gcloud container clusters get-credentials ${module.comet_gke[0].cluster_name} --region ${var.region}" : null

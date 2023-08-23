@@ -62,4 +62,5 @@ comet_vpc_subnet_name = "subnet-name"
 #db_password  = null
 
 #### comet_s3 ####
-#
+## If using an existing storage bucket for Comet, set the bucket name below
+#s3_existing_bucket_name = "no-bucket"

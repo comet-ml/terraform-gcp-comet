@@ -1,3 +1,7 @@
+data "google_service_account" "gke_cluster_sa" {
+  account_id = module.gke.service_account
+}
+
 locals {
   resource_name  = "comet-${var.environment}"
   node_locations = join(",", var.comet_vpc_zones)
@@ -83,5 +87,20 @@ resource "kubernetes_secret" "gcp-proxy-svs-account-secret" {
   }
   data = {
     "gcp-proxy-svs-account.json" = base64decode(google_service_account_key.gcp-proxy-svs-account-key.private_key)
+  }
+}
+
+resource "google_storage_hmac_key" "key" {
+  service_account_email = data.google_service_account.gke_cluster_sa.email
+}
+
+resource "google_project_iam_member" "cluster_sa_storage_binding" {
+  project = var.project_id
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${data.google_service_account.gke_cluster_sa.email}"
+
+  condition {
+    title       = "comet_bucket_only"
+    expression  = "resource.name.endsWith(\"${var.gke_sa_s3_bucket_name}\")"
   }
 }
