@@ -7,7 +7,21 @@ module "service_accounts" {
   source        = "terraform-google-modules/service-accounts/google"
   project_id    = var.project_id
   names         = ["${local.resource_name}-vm-sa"]
-  project_roles = ["${var.project_id}=>roles/storage.objectAdmin"]
+}
+
+resource "google_project_iam_member" "vm_sa_storage_binding" {
+  project = var.project_id
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${module.service_accounts.email}"
+
+  condition {
+    title       = "comet_bucket_only"
+    expression  = "resource.name.startsWith(\"projects/_/buckets/${var.gke_sa_s3_bucket_name}\")"
+  }
+}
+
+resource "google_storage_hmac_key" "key" {
+  service_account_email = module.service_accounts.email
 }
 
 module "vm_instance_template" {

@@ -13,6 +13,7 @@ module "comet_gke" {
   comet_vpc_subnet_name  = var.enable_vpc ? module.comet_vpc[0].comet_vpc_subnet_name : var.comet_vpc_subnet_name
   gke_pods_cidr_name     = var.enable_vpc ? module.comet_vpc[0].gke_pods_cidr_name : var.gke_pods_cidr_name
   gke_services_cidr_name = var.enable_vpc ? module.comet_vpc[0].gke_services_cidr_name : var.gke_services_cidr_name
+  gke_sa_s3_bucket_name  = var.enable_s3 ? module.comet_s3[0].storage_bucket_name : var.s3_existing_bucket_name
 
   gke_regional                        = var.gke_regional
   gke_kubernetes_version              = var.gke_kubernetes_version
@@ -130,6 +131,7 @@ module "comet_vm" {
   vm_disk_auto_delete      = var.vm_disk_auto_delete
   vm_enable_ssh            = var.vm_enable_ssh
   vm_mysql_connection_name = var.enable_mysql ? module.comet_mysql[0].mysql_connection_name : null
+  vm_sa_s3_bucket_name     = var.enable_s3 ? module.comet_s3[0].storage_bucket_name : var.s3_existing_bucket_name
 }
 
 module "comet_vpc" {

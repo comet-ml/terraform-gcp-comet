@@ -432,6 +432,11 @@ variable "db_password" {
 }
 
 #### comet_s3 ####
+variable "s3_existing_bucket_name" {
+  description = "Name of an existing storage bucket to use with Comet; only used with enable_s3 set to false"
+  type        = string
+  default     = "no-bucket"
+}
 variable "s3_force_destroy" {
   description = "Setting to allow storage bucket to be deleted while still holding objects"
   type        = bool
@@ -447,7 +452,7 @@ variable "s3_storage_class" {
 variable "s3_uniform_bucket_level_access" {
   description = "Enables uniform bucket level access"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "s3_versioning" {
