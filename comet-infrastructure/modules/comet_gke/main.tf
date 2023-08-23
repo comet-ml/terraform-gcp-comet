@@ -101,6 +101,6 @@ resource "google_project_iam_member" "cluster_sa_storage_binding" {
 
   condition {
     title       = "comet_bucket_only"
-    expression  = "resource.name.endsWith(\"${var.gke_sa_s3_bucket_name}\")"
+    expression  = "resource.name.startsWith(\"projects/_/buckets/${var.gke_sa_s3_bucket_name}\")"
   }
 }

@@ -74,6 +74,22 @@ output "comet_vm_instance_template" {
   value       = var.enable_vm ? module.comet_vm[0].instance_template : null
 }
 
+output "comet_vm_instance_service_account" {
+  description = "Service account used by the VM"
+  value       = var.enable_vm ? module.comet_vm[0].instance_service_account : null
+}
+
+output "comet_vm_instance_sa_hmac_access_id" {
+  description = "Access ID of the HMAC key created for the instance service account"
+  value       = var.enable_vm ? module.comet_vm[0].instance_sa_hmac_access_id : null
+}
+
+output "comet_vm_instance_sa_hmac_secret" {
+  description = "Secret of the HMAC key created for the instance service account"
+  value       = var.enable_vm ? module.comet_vm[0].instance_sa_hmac_secret : null
+  sensitive   = true
+}
+
 output "comet_vpc_name" {
   description = "Name of the VPC created for Comet"
   value       = var.enable_vpc ? module.comet_vpc[0].comet_vpc_name : null

@@ -62,3 +62,8 @@ variable "vm_mysql_connection_name" {
   description = "Connection name for the MySQL instance"
   type        = string
 }
+
+variable "vm_sa_s3_bucket_name" {
+  description = "Name for GCS bucket to grant access via VM service account"
+  type        = string
+}
