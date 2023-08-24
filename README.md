@@ -111,6 +111,7 @@ terraform {
 | <a name="input_gke_pods_cidr"></a> [gke\_pods\_cidr](#input\_gke\_pods\_cidr) | Secondary network CIDR block for the VPC, to be used for GKE pods | `string` | `"10.1.0.0/16"` | no |
 | <a name="input_gke_pods_cidr_name"></a> [gke\_pods\_cidr\_name](#input\_gke\_pods\_cidr\_name) | Name of the secondary CIDR block to be used for GKE pods | `string` | `null` | no |
 | <a name="input_gke_regional"></a> [gke\_regional](#input\_gke\_regional) | Enables provisioning the GKE cluster with the regional architecture | `bool` | `true` | no |
+| <a name="input_gke_release_channel"></a> [gke\_release\_channel](#input\_gke\_release\_channel) | Sets the release channel for the cluster | `string` | `"STABLE"` | no |
 | <a name="input_gke_remove_default_node_pool"></a> [gke\_remove\_default\_node\_pool](#input\_gke\_remove\_default\_node\_pool) | Sets the cluster default GKE nodepool to be removed when the cluster is created | `bool` | `false` | no |
 | <a name="input_gke_services_cidr"></a> [gke\_services\_cidr](#input\_gke\_services\_cidr) | Secondary network CIDR block for the VPC, to be used for GKE services | `string` | `"10.2.0.0/20"` | no |
 | <a name="input_gke_services_cidr_name"></a> [gke\_services\_cidr\_name](#input\_gke\_services\_cidr\_name) | Name of the secondary CIDR block to be used for GKE services | `string` | `null` | no |
@@ -134,9 +135,10 @@ terraform {
 | <a name="input_memorystore_redis_version"></a> [memorystore\_redis\_version](#input\_memorystore\_redis\_version) | Redis version for the Memorystore instance | `string` | `"REDIS_6_X"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID of the project that resources will be provisioned in | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region that resources will be launched in | `string` | `"us-east1"` | no |
+| <a name="input_s3_existing_bucket_name"></a> [s3\_existing\_bucket\_name](#input\_s3\_existing\_bucket\_name) | Name of an existing storage bucket to use with Comet; only used with enable\_s3 set to false | `string` | `"no-bucket"` | no |
 | <a name="input_s3_force_destroy"></a> [s3\_force\_destroy](#input\_s3\_force\_destroy) | Setting to allow storage bucket to be deleted while still holding objects | `bool` | `false` | no |
 | <a name="input_s3_storage_class"></a> [s3\_storage\_class](#input\_s3\_storage\_class) | Storage bucket class | `string` | `"STANDARD"` | no |
-| <a name="input_s3_uniform_bucket_level_access"></a> [s3\_uniform\_bucket\_level\_access](#input\_s3\_uniform\_bucket\_level\_access) | Enables uniform bucket level access | `bool` | `false` | no |
+| <a name="input_s3_uniform_bucket_level_access"></a> [s3\_uniform\_bucket\_level\_access](#input\_s3\_uniform\_bucket\_level\_access) | Enables uniform bucket level access | `bool` | `true` | no |
 | <a name="input_s3_versioning"></a> [s3\_versioning](#input\_s3\_versioning) | Enables versioning for objects in the storage bucket | `bool` | `false` | no |
 | <a name="input_vm_disk_auto_delete"></a> [vm\_disk\_auto\_delete](#input\_vm\_disk\_auto\_delete) | Enables the storage disk on the VM to be automatically deleted on VM deletion | `bool` | `false` | no |
 | <a name="input_vm_disk_size_gb"></a> [vm\_disk\_size\_gb](#input\_vm\_disk\_size\_gb) | Size in GB for storage disk | `string` | `"1000"` | no |
@@ -155,6 +157,9 @@ terraform {
 | <a name="output_comet_gke_cluster"></a> [comet\_gke\_cluster](#output\_comet\_gke\_cluster) | Name of the GKE cluster |
 | <a name="output_comet_gke_configure_kubectl"></a> [comet\_gke\_configure\_kubectl](#output\_comet\_gke\_configure\_kubectl) | Configure kubectl: run the following command to update your kubeconfig with the newly provisioned cluster |
 | <a name="output_comet_gke_nodepools"></a> [comet\_gke\_nodepools](#output\_comet\_gke\_nodepools) | Names of the nodepools in the GKE cluster |
+| <a name="output_comet_gke_sa_hmac_access_id"></a> [comet\_gke\_sa\_hmac\_access\_id](#output\_comet\_gke\_sa\_hmac\_access\_id) | Access ID of the HMAC key created for the cluster service account |
+| <a name="output_comet_gke_sa_hmac_secret"></a> [comet\_gke\_sa\_hmac\_secret](#output\_comet\_gke\_sa\_hmac\_secret) | Secret of the HMAC key created for the cluster service account |
+| <a name="output_comet_gke_service_account"></a> [comet\_gke\_service\_account](#output\_comet\_gke\_service\_account) | Service account used by the GKE nodes |
 | <a name="output_comet_lb_external_ip"></a> [comet\_lb\_external\_ip](#output\_comet\_lb\_external\_ip) | External IP address for the VM load balancer |
 | <a name="output_comet_memorystore_host"></a> [comet\_memorystore\_host](#output\_comet\_memorystore\_host) | Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service |
 | <a name="output_comet_memorystore_name"></a> [comet\_memorystore\_name](#output\_comet\_memorystore\_name) | ID of the Redis instance |
@@ -163,6 +168,11 @@ terraform {
 | <a name="output_comet_s3_storage_bucket_name"></a> [comet\_s3\_storage\_bucket\_name](#output\_comet\_s3\_storage\_bucket\_name) | Name of the storage bucket |
 | <a name="output_comet_s3_storage_bucket_url"></a> [comet\_s3\_storage\_bucket\_url](#output\_comet\_s3\_storage\_bucket\_url) | Base URL of the storage bucket |
 | <a name="output_comet_vm_instance_group"></a> [comet\_vm\_instance\_group](#output\_comet\_vm\_instance\_group) | URL of the managed instance group created for the Comet VM |
+| <a name="output_comet_vm_instance_sa_hmac_access_id"></a> [comet\_vm\_instance\_sa\_hmac\_access\_id](#output\_comet\_vm\_instance\_sa\_hmac\_access\_id) | Access ID of the HMAC key created for the instance service account |
+| <a name="output_comet_vm_instance_sa_hmac_secret"></a> [comet\_vm\_instance\_sa\_hmac\_secret](#output\_comet\_vm\_instance\_sa\_hmac\_secret) | Secret of the HMAC key created for the instance service account |
+| <a name="output_comet_vm_instance_service_account"></a> [comet\_vm\_instance\_service\_account](#output\_comet\_vm\_instance\_service\_account) | Service account used by the VM |
 | <a name="output_comet_vm_instance_template"></a> [comet\_vm\_instance\_template](#output\_comet\_vm\_instance\_template) | Name of the VM instance template created for the Comet VM |
+| <a name="output_comet_vpc_name"></a> [comet\_vpc\_name](#output\_comet\_vpc\_name) | Name of the VPC created for Comet |
+| <a name="output_comet_vpc_subnet_name"></a> [comet\_vpc\_subnet\_name](#output\_comet\_vpc\_subnet\_name) | Name of the subnet created in the Comet VPC |
 | <a name="output_comet_vpc_name"></a> [comet\_vpc\_name](#output\_comet\_vpc\_name) | Name of the VPC created for Comet |
 | <a name="output_comet_vpc_subnet_name"></a> [comet\_vpc\_subnet\_name](#output\_comet\_vpc\_subnet\_name) | Name of the subnet created in the Comet VPC |
