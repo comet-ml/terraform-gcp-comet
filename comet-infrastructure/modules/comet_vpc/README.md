@@ -14,12 +14,14 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_cloud_nat_group"></a> [cloud\_nat\_group](#module\_cloud\_nat\_group) | terraform-google-modules/cloud-nat/google | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [google_compute_router.comet-router](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router) | resource |
 | [google_compute_zones.available](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_zones) | data source |
 
 ## Inputs
@@ -33,6 +35,7 @@
 | <a name="input_region"></a> [region](#input\_region) | Region that resources will be launched in | `string` | n/a | yes |
 | <a name="input_vpc_subnet_cidr"></a> [vpc\_subnet\_cidr](#input\_vpc\_subnet\_cidr) | Network CIDR block for the provisioned VPC subnet | `string` | n/a | yes |
 | <a name="input_vpc_subnet_flow_logs"></a> [vpc\_subnet\_flow\_logs](#input\_vpc\_subnet\_flow\_logs) | Enables flow logs for the provisioned VPC | `bool` | n/a | yes |
+| <a name="input_vpc_subnet_private_access"></a> [vpc\_subnet\_private\_access](#input\_vpc\_subnet\_private\_access) | Enables resources in VPC without public IPs to access Google APIs and services | `bool` | n/a | yes |
 
 ## Outputs
 
@@ -43,3 +46,4 @@
 | <a name="output_comet_vpc_subnet_name"></a> [comet\_vpc\_subnet\_name](#output\_comet\_vpc\_subnet\_name) | Name of the subnet created in the Comet VPC |
 | <a name="output_gke_pods_cidr_name"></a> [gke\_pods\_cidr\_name](#output\_gke\_pods\_cidr\_name) | Generated name of the secondary IP range provisioned for GKE pods |
 | <a name="output_gke_services_cidr_name"></a> [gke\_services\_cidr\_name](#output\_gke\_services\_cidr\_name) | Generated name of the secondary IP range provisioned for GKE services |
+| <a name="output_vpc_cloudnat_router_name"></a> [vpc\_cloudnat\_router\_name](#output\_vpc\_cloudnat\_router\_name) | Name of the router used for Cloud NAT |

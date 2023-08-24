@@ -23,11 +23,14 @@
 
 | Name | Type |
 |------|------|
+| [google_project_iam_member.cluster_sa_storage_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_project_iam_member.sa_sql_client_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_service_account.gcp-proxy-svs-account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 | [google_service_account_key.gcp-proxy-svs-account-key](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_key) | resource |
+| [google_storage_hmac_key.key](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_hmac_key) | resource |
 | [kubernetes_namespace.cometml](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_secret.gcp-proxy-svs-account-secret](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
+| [google_service_account.gke_cluster_sa](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/service_account) | data source |
 
 ## Inputs
 
@@ -61,7 +64,9 @@
 | <a name="input_gke_nodepool_spot"></a> [gke\_nodepool\_spot](#input\_gke\_nodepool\_spot) | Enables using spot VMs for nodes | `bool` | n/a | yes |
 | <a name="input_gke_pods_cidr_name"></a> [gke\_pods\_cidr\_name](#input\_gke\_pods\_cidr\_name) | Name of the secondary CIDR block to be used for GKE pods | `string` | n/a | yes |
 | <a name="input_gke_regional"></a> [gke\_regional](#input\_gke\_regional) | Enables provisioning the GKE cluster with the regional architecture | `bool` | n/a | yes |
+| <a name="input_gke_release_channel"></a> [gke\_release\_channel](#input\_gke\_release\_channel) | Sets the release channel for the cluster | `string` | n/a | yes |
 | <a name="input_gke_remove_default_node_pool"></a> [gke\_remove\_default\_node\_pool](#input\_gke\_remove\_default\_node\_pool) | Sets the cluster default nodepool to be removed when the cluster is created | `bool` | n/a | yes |
+| <a name="input_gke_sa_s3_bucket_name"></a> [gke\_sa\_s3\_bucket\_name](#input\_gke\_sa\_s3\_bucket\_name) | Name for GCS bucket to grant access via cluster service account | `string` | n/a | yes |
 | <a name="input_gke_services_cidr_name"></a> [gke\_services\_cidr\_name](#input\_gke\_services\_cidr\_name) | Name of the secondary CIDR block to be used for GKE services | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID of the project that resources will be provisioned in | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region that resources will be launched in | `string` | n/a | yes |
@@ -74,3 +79,6 @@
 | <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | Endpoint to use for auth to cluster via Kubernetes provider |
 | <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | Name of the cluster |
 | <a name="output_cluster_nodepools_names"></a> [cluster\_nodepools\_names](#output\_cluster\_nodepools\_names) | Names of the nodepools in the cluster |
+| <a name="output_cluster_sa_hmac_access_id"></a> [cluster\_sa\_hmac\_access\_id](#output\_cluster\_sa\_hmac\_access\_id) | Access ID of the HMAC key created for the cluster service account |
+| <a name="output_cluster_sa_hmac_secret"></a> [cluster\_sa\_hmac\_secret](#output\_cluster\_sa\_hmac\_secret) | Secret of the HMAC key created for the cluster service account |
+| <a name="output_cluster_service_account"></a> [cluster\_service\_account](#output\_cluster\_service\_account) | Service account used by the GKE nodes |
