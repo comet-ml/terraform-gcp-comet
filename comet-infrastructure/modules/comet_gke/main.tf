@@ -28,6 +28,7 @@ module "gke" {
   filestore_csi_driver            = var.gke_filestore_csi_driver
   enable_cost_allocation          = var.gke_enable_cost_allocation
   remove_default_node_pool        = var.gke_remove_default_node_pool
+  release_channel                 = var.gke_release_channel
 
   node_pools = [
     {

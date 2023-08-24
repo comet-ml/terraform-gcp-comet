@@ -26,6 +26,7 @@ module "comet_gke" {
   gke_filestore_csi_driver            = var.gke_filestore_csi_driver
   gke_enable_cost_allocation          = var.gke_enable_cost_allocation
   gke_remove_default_node_pool        = var.gke_remove_default_node_pool
+  gke_release_channel                 = var.gke_release_channel
 
   gke_nodepool_machine_type    = var.gke_nodepool_machine_type
   gke_nodepool_min_count       = var.gke_nodepool_min_count

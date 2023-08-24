@@ -93,6 +93,16 @@ variable "gke_remove_default_node_pool" {
   type        = bool
 }
 
+variable "gke_release_channel" {
+  description = "Sets the release channel for the cluster"
+  type        = string
+}
+
+variable "gke_sa_s3_bucket_name" {
+  description = "Name for GCS bucket to grant access via cluster service account"
+  type        = string
+}
+
 variable "gke_nodepool_machine_type" {
   description = "VM machine type for the GKE nodes"
   type        = string
@@ -156,9 +166,4 @@ variable "gke_nodepool_auto_upgrade" {
 variable "gke_nodepool_preemptible" {
   description = "Sets nodes as preemptible"
   type        = bool
-}
-
-variable "gke_sa_s3_bucket_name" {
-  description = "Name for GCS bucket to grant access via cluster service account"
-  type        = string
 }

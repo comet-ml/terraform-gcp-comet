@@ -199,6 +199,11 @@ variable "gke_remove_default_node_pool" {
   type        = bool
   default     = false
 }
+variable "gke_release_channel" {
+  description = "Sets the release channel for the cluster"
+  type        = string
+  default     = "STABLE"
+}
 # node pool
 variable "gke_nodepool_machine_type" {
   description = "VM machine type for the GKE nodes"
