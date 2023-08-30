@@ -10,7 +10,7 @@ Terraform module for deploying infrastructure components to run CometML.
 - [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) installed
 
 **Infrastructure Deployment:**
-- To deploy directly from this repository, follow the steps below.
+- Follow the steps below to deploy directly from the GitHub repository.
   - Clone the repository to your local machine: `git clone https://github.com/comet-ml/terraform-gcp-comet.git`
   - Move into the deployment directory: `cd terraform-gcp-comet`
   - Initialize the directory: `terraform init`
@@ -18,7 +18,7 @@ Terraform module for deploying infrastructure components to run CometML.
   - Provision the resources: `terraform apply`
 
 **A note on state management:**
-- This configuration stores the Terraform state locally by default. To store the state file remotely in GCS, a `backend` block can be nested within the `terraform` block inside comet-infrastructure/versions.tf. Below is an example of such a configuration:
+- This configuration stores the Terraform state locally by default. To store the state file remotely in GCS, a `backend` block can be nested within the `terraform` block inside versions.tf if applying directly from this configuration, or within your `terraform` block if calling the module. Below is an example of such a configuration:
 ```
 terraform {
   backend "gcs" {
