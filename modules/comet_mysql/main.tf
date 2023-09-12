@@ -48,6 +48,14 @@ module "mysql" {
     {
       name  = "collation_server"
       value = "utf8mb4_unicode_ci"
+    },
+    {
+      name  = "group_concat_max_len"
+      value = "1000000"
+    },
+    {
+      name  = "log_bin_trust_function_creators"
+      value = "on"
     }
   ]
 
