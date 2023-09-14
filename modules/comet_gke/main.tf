@@ -105,3 +105,9 @@ resource "google_project_iam_member" "cluster_sa_storage_binding" {
     expression  = "resource.name.startsWith(\"projects/_/buckets/${var.gke_sa_s3_bucket_name}\")"
   }
 }
+
+resource "google_compute_ssl_policy" "comet-lb-ssl-policy" {
+  name            = "${local.resource_name}-lb-ssl-policy"
+  profile         = "MODERN"
+  min_tls_version = "TLS_1_2"
+}

@@ -11,6 +11,7 @@ module "gce-app-lb" {
   managed_ssl_certificate_domains = var.lb_managed_ssl_certificate_domains
   use_ssl_certificates            = var.lb_use_provided_ssl_certificates
   ssl_certificates                = var.lb_provided_ssl_certificates
+  ssl_policy                      = google_compute_ssl_policy.comet-lb-ssl-policy.self_link
 
   target_tags = [
     "${local.resource_name}",
@@ -48,4 +49,10 @@ module "gce-app-lb" {
       }
     }
   }
+}
+
+resource "google_compute_ssl_policy" "comet-lb-ssl-policy" {
+  name            = "${local.resource_name}-lb-ssl-policy"
+  profile         = "MODERN"
+  min_tls_version = "TLS_1_2"
 }
