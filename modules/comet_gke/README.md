@@ -23,6 +23,7 @@
 
 | Name | Type |
 |------|------|
+| [google_compute_ssl_policy.comet-lb-ssl-policy](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_ssl_policy) | resource |
 | [google_project_iam_member.cluster_sa_storage_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_project_iam_member.sa_sql_client_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_service_account.gcp-proxy-svs-account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
