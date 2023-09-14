@@ -107,7 +107,7 @@ resource "google_project_iam_member" "cluster_sa_storage_binding" {
 }
 
 resource "google_compute_ssl_policy" "comet-lb-ssl-policy" {
-  name            = "${local.resource_name}-lb-ssl-policy"
+  name            = "comet-gke-lb-ssl-policy"
   profile         = "MODERN"
   min_tls_version = "TLS_1_2"
 }
