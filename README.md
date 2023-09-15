@@ -174,5 +174,3 @@ terraform {
 | <a name="output_comet_vm_instance_template"></a> [comet\_vm\_instance\_template](#output\_comet\_vm\_instance\_template) | Name of the VM instance template created for the Comet VM |
 | <a name="output_comet_vpc_name"></a> [comet\_vpc\_name](#output\_comet\_vpc\_name) | Name of the VPC created for Comet |
 | <a name="output_comet_vpc_subnet_name"></a> [comet\_vpc\_subnet\_name](#output\_comet\_vpc\_subnet\_name) | Name of the subnet created in the Comet VPC |
-| <a name="output_comet_vpc_name"></a> [comet\_vpc\_name](#output\_comet\_vpc\_name) | Name of the VPC created for Comet |
-| <a name="output_comet_vpc_subnet_name"></a> [comet\_vpc\_subnet\_name](#output\_comet\_vpc\_subnet\_name) | Name of the subnet created in the Comet VPC |
