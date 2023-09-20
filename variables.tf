@@ -409,7 +409,7 @@ variable "db_deletion_protection" {
 variable "db_version" {
   description = "The database version to use"
   type        = string
-  default     = "MYSQL_8_0"
+  default     = "MYSQL_5_7"
 }
 
 variable "db_instance_tier" {
