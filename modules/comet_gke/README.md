@@ -2,7 +2,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_google"></a> [google](#requirement\_google) | >= 4.51 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 4.51, <= 4.76 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.0.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.1.0 |
 
