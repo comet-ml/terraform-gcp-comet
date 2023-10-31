@@ -510,7 +510,7 @@ variable "vm_enable_ssh" {
 variable "vm_enable_public_ip" {
   description = "Set to enable public IP on the VM"
   type        = bool
-  default     = true
+  default     = false
 }
 
 #### comet_vpc ####
