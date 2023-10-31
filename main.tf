@@ -131,6 +131,7 @@ module "comet_vm" {
   vm_disk_size_gb          = var.vm_disk_size_gb
   vm_disk_auto_delete      = var.vm_disk_auto_delete
   vm_enable_ssh            = var.vm_enable_ssh
+  vm_enable_public_ip      = var.vm_enable_public_ip
   vm_mysql_connection_name = var.enable_mysql ? module.comet_mysql[0].mysql_connection_name : null
   vm_sa_s3_bucket_name     = var.enable_s3 ? module.comet_s3[0].storage_bucket_name : var.s3_existing_bucket_name
 }

@@ -25,9 +25,15 @@ resource "google_storage_hmac_key" "key" {
 }
 
 module "vm_instance_template" {
-  source     = "terraform-google-modules/vm/google//modules/instance_template"
-  project_id = var.project_id
-  subnetwork = var.vm_subnetwork
+  source        = "terraform-google-modules/vm/google//modules/instance_template"
+  project_id    = var.project_id
+  subnetwork    = var.vm_subnetwork
+  access_config = var.vm_enable_public_ip ? [
+    {
+      nat_ip       = null
+      network_tier = "PREMIUM"
+    }
+  ] : null
   service_account = {
     email  = module.service_accounts.email
     scopes = ["https://www.googleapis.com/auth/cloud-platform"]
