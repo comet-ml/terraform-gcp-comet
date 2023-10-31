@@ -238,7 +238,7 @@ variable "gke_nodepool_spot" {
 variable "gke_nodepool_disk_size_gb" {
   description = "Disk size for GKE nodes"
   type        = number
-  default     = 100
+  default     = 500
 }
 
 variable "gke_nodepool_disk_type" {
