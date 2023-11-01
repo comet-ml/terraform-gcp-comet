@@ -4,9 +4,9 @@ locals {
 }
 
 module "service_accounts" {
-  source        = "terraform-google-modules/service-accounts/google"
-  project_id    = var.project_id
-  names         = ["${local.resource_name}-vm-sa"]
+  source     = "terraform-google-modules/service-accounts/google"
+  project_id = var.project_id
+  names      = ["${local.resource_name}-vm-sa"]
 }
 
 resource "google_project_iam_member" "vm_sa_storage_binding" {
@@ -15,8 +15,8 @@ resource "google_project_iam_member" "vm_sa_storage_binding" {
   member  = "serviceAccount:${module.service_accounts.email}"
 
   condition {
-    title       = "comet_bucket_only"
-    expression  = "resource.name.startsWith(\"projects/_/buckets/${var.vm_sa_s3_bucket_name}\")"
+    title      = "comet_bucket_only"
+    expression = "resource.name.startsWith(\"projects/_/buckets/${var.vm_sa_s3_bucket_name}\")"
   }
 }
 
@@ -25,15 +25,16 @@ resource "google_storage_hmac_key" "key" {
 }
 
 module "vm_instance_template" {
-  source        = "terraform-google-modules/vm/google//modules/instance_template"
-  project_id    = var.project_id
-  subnetwork    = var.vm_subnetwork
+  source     = "terraform-google-modules/vm/google//modules/instance_template"
+  project_id = var.project_id
+  subnetwork = var.vm_subnetwork
   access_config = var.vm_enable_public_ip ? [
     {
       nat_ip       = null
       network_tier = "PREMIUM"
     }
-  ] : null
+  ] : []
+  
   service_account = {
     email  = module.service_accounts.email
     scopes = ["https://www.googleapis.com/auth/cloud-platform"]
