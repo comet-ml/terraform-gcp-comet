@@ -95,6 +95,7 @@ module "comet_mysql" {
   db_deletion_protection  = var.db_deletion_protection
   db_version              = var.db_version
   db_instance_tier        = var.db_instance_tier
+  db_disk_size            = var.db_disk_size
   db_assign_public_ip     = var.db_assign_public_ip
   db_user                 = var.db_user
   db_password             = var.db_password
