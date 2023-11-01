@@ -507,6 +507,12 @@ variable "vm_enable_ssh" {
   default     = true
 }
 
+variable "vm_enable_public_ip" {
+  description = "Set to enable public IP on the VM"
+  type        = bool
+  default     = false
+}
+
 #### comet_vpc ####
 variable "vpc_subnet_cidr" {
   description = "Network CIDR block for the provisioned VPC subnet"

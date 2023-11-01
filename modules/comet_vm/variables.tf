@@ -58,6 +58,11 @@ variable "vm_enable_ssh" {
   type        = bool
 }
 
+variable "vm_enable_public_ip" {
+  description = "Set to enable public IP on the VM"
+  type        = bool
+}
+
 variable "vm_mysql_connection_name" {
   description = "Connection name for the MySQL instance"
   type        = string
