@@ -436,6 +436,12 @@ variable "db_password" {
   default     = null
 }
 
+variable "db_disk_size" {
+  description = "Initial size of the database storage disk"
+  type        = number
+  default     = 100
+}
+
 #### comet_s3 ####
 variable "s3_existing_bucket_name" {
   description = "Name of an existing storage bucket to use with Comet; only used with enable_s3 set to false"

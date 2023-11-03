@@ -61,3 +61,8 @@ variable "db_password" {
   description = "Password for database user account"
   type        = string
 }
+
+variable "db_disk_size" {
+  description = "Initial size of the database storage disk"
+  type        = number
+}

@@ -16,6 +16,7 @@ module "mysql" {
 
   deletion_protection = var.db_deletion_protection
   database_version    = var.db_version
+  disk_size           = var.db_disk_size
   region              = var.region
   zone                = var.comet_vpc_zones[0]
   tier                = var.db_instance_tier
