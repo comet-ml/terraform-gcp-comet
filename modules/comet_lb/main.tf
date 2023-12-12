@@ -9,7 +9,7 @@ module "gce-app-lb" {
 
   ssl                             = var.lb_enable_ssl
   managed_ssl_certificate_domains = var.lb_managed_ssl_certificate_domains
-  use_ssl_certificates            = var.lb_use_provided_ssl_certificates
+  #use_ssl_certificates            = var.lb_use_provided_ssl_certificates
   ssl_certificates                = var.lb_provided_ssl_certificates
   ssl_policy                      = google_compute_ssl_policy.comet-lb-ssl-policy.self_link
 
