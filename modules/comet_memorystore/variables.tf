@@ -29,7 +29,6 @@ variable "memorystore_redis_version" {
 variable "memorystore_instance_tier" {
   description = "Memorystore instance tier"
   type        = string
-
 }
 
 variable "memorystore_memory_size_gb" {
@@ -62,4 +61,9 @@ variable "memorystore_maintenance_start_min" {
     condition     = var.memorystore_maintenance_start_min >= 0 && var.memorystore_maintenance_start_min <= 59
     error_message = "Invalid value for minute of the hour. Accepted values: 0 to 59"
   }
+}
+
+variable "memorystore_redis_auth" {
+  description = "Setting to enable or disable Redis AUTH"
+  type        = bool
 }

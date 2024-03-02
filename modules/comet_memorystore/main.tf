@@ -9,6 +9,7 @@ resource "google_redis_instance" "comet-redis" {
   memory_size_gb     = var.memorystore_memory_size_gb
   redis_version      = var.memorystore_redis_version
   authorized_network = var.comet_vpc_name
+  auth_enabled       = var.memorystore_redis_auth 
 
   maintenance_policy {
     weekly_maintenance_window {

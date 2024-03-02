@@ -27,7 +27,9 @@ resource "google_storage_hmac_key" "key" {
 module "vm_instance_template" {
   source     = "terraform-google-modules/vm/google//modules/instance_template"
   project_id = var.project_id
+  region     = var.region
   subnetwork = var.vm_subnetwork
+  subnetwork_project = var.project_id
   access_config = var.vm_enable_public_ip ? [
     {
       nat_ip       = null

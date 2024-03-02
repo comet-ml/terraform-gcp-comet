@@ -393,6 +393,12 @@ variable "memorystore_maintenance_start_min" {
   default     = 30
 }
 
+variable "memorystore_redis_auth" {
+  description = "Setting to enable or disable Redis AUTH"
+  type        = bool
+  default     = false
+}
+
 #### comet_mysql ####
 variable "db_random_instance_name" {
   description = "Sets random suffix at the end of the Cloud SQL resource name"
