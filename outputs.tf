@@ -49,6 +49,12 @@ output "comet_memorystore_port" {
   value       = var.enable_memorystore ? module.comet_memorystore[0].memorystore_port : null
 }
 
+output "comet_memorystore_redis_auth" {
+  description = "The Redis AUTH string for the memorystore instance"
+  value       = var.enable_memorystore ? module.comet_memorystore[0].memorystore_redis_auth : null
+  sensitive   = true
+}
+
 output "comet_mysql_connection_name" {
   description = "The connection name of the MySQL instance to be used in connection strings"
   value       = var.enable_mysql ? module.comet_mysql[0].mysql_connection_name : null

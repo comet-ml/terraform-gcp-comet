@@ -80,6 +80,7 @@ module "comet_memorystore" {
   memorystore_maintenance_day        = var.memorystore_maintenance_day
   memorystore_maintenance_start_hour = var.memorystore_maintenance_start_hour
   memorystore_maintenance_start_min  = var.memorystore_maintenance_start_min
+  memorystore_redis_auth             = var.memorystore_redis_auth
 }
 
 module "comet_mysql" {

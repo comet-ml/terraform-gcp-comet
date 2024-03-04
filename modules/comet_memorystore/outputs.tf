@@ -12,3 +12,8 @@ output "memorystore_port" {
   description = "The port number of the exposed Redis endpoint"
   value = google_redis_instance.comet-redis.port
 }
+
+output "memorystore_redis_auth" {
+  description = "The Redis AUTH string if AUTH enabled"
+  value = google_redis_instance.comet-redis.auth_string
+}
