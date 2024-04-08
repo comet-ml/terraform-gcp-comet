@@ -58,6 +58,10 @@ module "mysql" {
       name  = "log_bin_trust_function_creators"
       value = "on"
     }
+    {
+      name = "thread_stack"
+      value = "6291456"
+    }
   ]
 
   // By default, all users will be permitted to connect only via the
