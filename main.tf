@@ -41,6 +41,16 @@ module "comet_gke" {
   gke_nodepool_auto_repair     = var.gke_nodepool_auto_repair
   gke_nodepool_auto_upgrade    = var.gke_nodepool_auto_upgrade
   gke_nodepool_preemptible     = var.gke_nodepool_preemptible
+
+  enable_mpm_infra               = var.enable_mpm_infra
+  gke_nodepool_druid_count       = var.gke_nodepool_druid_count
+  gke_nodepool_druid_machine     = var.gke_nodepool_druid_machine
+  gke_nodepool_zookeeper_count   = var.gke_nodepool_zookeeper_count
+  gke_nodepool_zookeeper_machine = var.gke_nodepool_zookeeper_machine
+  gke_nodepool_airflow_count     = var.gke_nodepool_airflow_count
+  gke_nodepool_airflow_machine   = var.gke_nodepool_airflow_machine
+
+
 }
 
 module "comet_lb" {
@@ -115,6 +125,8 @@ module "comet_s3" {
   s3_storage_class               = var.s3_storage_class
   s3_uniform_bucket_level_access = var.s3_uniform_bucket_level_access
   s3_versioning                  = var.s3_versioning
+
+  enable_mpm_infra = var.enable_mpm_infra
 }
 
 module "comet_vm" {

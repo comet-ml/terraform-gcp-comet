@@ -57,7 +57,7 @@ module "mysql" {
     {
       name  = "log_bin_trust_function_creators"
       value = "on"
-    }
+    },
     {
       name = "thread_stack"
       value = "6291456"

@@ -116,6 +116,11 @@ variable "enable_vpc" {
   type        = bool
 }
 
+variable "enable_mpm_infra" {
+  description = "Sets node pools to be created for MPM compute"
+  type        = bool
+}
+
 #######################
 #### Module inputs ####
 #######################
@@ -208,7 +213,7 @@ variable "gke_release_channel" {
 variable "gke_nodepool_machine_type" {
   description = "VM machine type for the GKE nodes"
   type        = string
-  default     = "n1-standard-8"
+  default     = "n1-standard-16"
 }
 
 variable "gke_nodepool_min_count" {
@@ -281,6 +286,42 @@ variable "gke_nodepool_preemptible" {
   description = "Sets GKE nodes as preemptible"
   type        = bool
   default     = false
+}
+
+variable "gke_nodepool_druid_count" {
+  description = "Number of nodes for Druid nodepool"
+  type        = number
+  default     = 6
+}
+
+variable "gke_nodepool_zookeeper_count" {
+  description = "Number of nodes for Zookeeper nodepool"
+  type        = number
+  default     = 3
+}
+
+variable "gke_nodepool_airflow_count" {
+  description = "Number of nodes for Airflow nodepool"
+  type        = number
+  default     = 3
+}
+
+variable "gke_nodepool_druid_machine" {
+  description = "Machine type for Druid nodepool"
+  type        = string
+  default     = "n1-standard-16"
+}
+
+variable "gke_nodepool_zookeeper_machine" {
+  description = "Machine type for Zookeeper nodepool"
+  type        = string
+  default     = "n1-standard-16"
+}
+
+variable "gke_nodepool_airflow_machine" {
+  description = "Machine type for Airflow nodepool"
+  type        = string
+  default     = "n1-standard-4"
 }
 
 #### comet_lb ####

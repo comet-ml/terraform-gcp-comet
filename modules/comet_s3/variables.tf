@@ -36,3 +36,8 @@ variable "s3_versioning" {
   description = "Enables versioning for objects in the storage bucket"
   type        = bool
 }
+
+variable "enable_mpm_infra" {
+  description = "Enables provisioning of additional S3 buckets for MPM"
+  type        = bool
+}

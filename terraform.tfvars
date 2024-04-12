@@ -22,6 +22,9 @@ enable_mysql = false
 # Provision a GCS bucket for storing Comet objects
 enable_s3 = false
 
+# Provision GKE compute node pools for MPM
+enable_mpm_infra = false
+
 ################
 #### Global ####
 ################
