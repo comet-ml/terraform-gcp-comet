@@ -167,13 +167,14 @@ resource "google_storage_hmac_key" "key" {
 }
 
 resource "google_project_iam_member" "cluster_sa_storage_binding" {
+  for_each = { for idx, name in var.gke_sa_s3_bucket_names : idx => name }
   project = var.project_id
   role    = "roles/storage.admin"
   member  = "serviceAccount:${data.google_service_account.gke_cluster_sa.email}"
 
   condition {
-    title       = "comet_bucket_only"
-    expression  = "resource.name.startsWith(\"projects/_/buckets/${var.gke_sa_s3_bucket_name}\")"
+    title       = "comet_bucket_only_${each.key}"
+    expression  = "resource.name.startsWith(\"projects/_/buckets/${each.value}\")"
   }
 }
 

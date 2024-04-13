@@ -98,9 +98,9 @@ variable "gke_release_channel" {
   type        = string
 }
 
-variable "gke_sa_s3_bucket_name" {
-  description = "Name for GCS bucket to grant access via cluster service account"
-  type        = string
+variable "gke_sa_s3_bucket_names" {
+  description = "List of S3 bucket names to grant access to GKE cluster service account"
+  type        = list(string)
 }
 
 variable "gke_nodepool_machine_type" {

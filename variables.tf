@@ -291,19 +291,19 @@ variable "gke_nodepool_preemptible" {
 variable "gke_nodepool_druid_count" {
   description = "Number of nodes for Druid nodepool"
   type        = number
-  default     = 6
+  default     = 2
 }
 
 variable "gke_nodepool_zookeeper_count" {
   description = "Number of nodes for Zookeeper nodepool"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "gke_nodepool_airflow_count" {
   description = "Number of nodes for Airflow nodepool"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "gke_nodepool_druid_machine" {
