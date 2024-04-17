@@ -30,13 +30,14 @@ module "gke" {
   remove_default_node_pool        = var.gke_remove_default_node_pool
   release_channel                 = var.gke_release_channel
 
-  node_pools = [
+  node_pools = concat([
     {
       name               = "${local.resource_name}-node-pool"
       node_locations     = local.node_locations
       machine_type       = var.gke_nodepool_machine_type
       min_count          = var.gke_nodepool_min_count
       max_count          = var.gke_nodepool_max_count
+      initial_node_count = var.gke_nodepool_min_count
       local_ssd_count    = var.gke_nodepool_local_ssd_count
       spot               = var.gke_nodepool_spot
       disk_size_gb       = var.gke_nodepool_disk_size_gb
@@ -47,16 +48,86 @@ module "gke" {
       auto_repair        = var.gke_nodepool_auto_repair
       auto_upgrade       = var.gke_nodepool_auto_upgrade
       preemptible        = var.gke_nodepool_preemptible
-      initial_node_count = var.gke_nodepool_min_count
     }
-  ]
-
+  ],
+  var.enable_mpm_infra ? [
+    {
+      name               = "druid-node-pool"
+      node_locations     = local.node_locations
+      machine_type       = var.gke_nodepool_druid_machine
+      min_count          = var.gke_nodepool_druid_count
+      max_count          = var.gke_nodepool_druid_count
+      initial_node_count = var.gke_nodepool_druid_count
+      local_ssd_count    = var.gke_nodepool_local_ssd_count
+      spot               = var.gke_nodepool_spot
+      disk_size_gb       = var.gke_nodepool_disk_size_gb
+      disk_type          = var.gke_nodepool_disk_type
+      image_type         = var.gke_nodepool_image_type
+      enable_gcfs        = var.gke_nodepool_enable_gcfs
+      enable_gvnic       = var.gke_nodepool_enable_gvnic
+      auto_repair        = var.gke_nodepool_auto_repair
+      auto_upgrade       = var.gke_nodepool_auto_upgrade
+      preemptible        = var.gke_nodepool_preemptible
+    },
+    {
+      name               = "zookeeper-node-pool"
+      node_locations     = local.node_locations
+      machine_type       = var.gke_nodepool_zookeeper_machine
+      min_count          = var.gke_nodepool_zookeeper_count
+      max_count          = var.gke_nodepool_zookeeper_count
+      initial_node_count = var.gke_nodepool_zookeeper_count
+      local_ssd_count    = var.gke_nodepool_local_ssd_count
+      spot               = var.gke_nodepool_spot
+      disk_size_gb       = var.gke_nodepool_disk_size_gb
+      disk_type          = var.gke_nodepool_disk_type
+      image_type         = var.gke_nodepool_image_type
+      enable_gcfs        = var.gke_nodepool_enable_gcfs
+      enable_gvnic       = var.gke_nodepool_enable_gvnic
+      auto_repair        = var.gke_nodepool_auto_repair
+      auto_upgrade       = var.gke_nodepool_auto_upgrade
+      preemptible        = var.gke_nodepool_preemptible
+    },
+    {
+      name               = "airflow-node-pool"
+      node_locations     = local.node_locations
+      machine_type       = var.gke_nodepool_airflow_machine
+      min_count          = var.gke_nodepool_airflow_count
+      max_count          = var.gke_nodepool_airflow_count
+      initial_node_count = var.gke_nodepool_airflow_count
+      local_ssd_count    = var.gke_nodepool_local_ssd_count
+      spot               = var.gke_nodepool_spot
+      disk_size_gb       = var.gke_nodepool_disk_size_gb
+      disk_type          = var.gke_nodepool_disk_type
+      image_type         = var.gke_nodepool_image_type
+      enable_gcfs        = var.gke_nodepool_enable_gcfs
+      enable_gvnic       = var.gke_nodepool_enable_gvnic
+      auto_repair        = var.gke_nodepool_auto_repair
+      auto_upgrade       = var.gke_nodepool_auto_upgrade
+      preemptible        = var.gke_nodepool_preemptible
+    }
+  ] : []
+  )
   node_pools_oauth_scopes = {
     all = [
       "https://www.googleapis.com/auth/cloud-platform",
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring"
     ]
+  }
+  node_pools_labels = {
+    all = {}
+    "${local.resource_name}-node-pool" = {
+      nodegroup_name = "comet"
+    }
+    "druid-node-pool" = {
+      nodegroup_name = "druid"
+    }
+    "zookeeper-node-pool" = {
+      nodegroup_name = "zookeeper"
+    }
+    "airflow-node-pool" = {
+      nodegroup_name = "airflow"
+    }
   }
 }
 
@@ -96,13 +167,14 @@ resource "google_storage_hmac_key" "key" {
 }
 
 resource "google_project_iam_member" "cluster_sa_storage_binding" {
+  for_each = { for idx, name in var.gke_sa_s3_bucket_names : idx => name }
   project = var.project_id
   role    = "roles/storage.admin"
   member  = "serviceAccount:${data.google_service_account.gke_cluster_sa.email}"
 
   condition {
-    title       = "comet_bucket_only"
-    expression  = "resource.name.startsWith(\"projects/_/buckets/${var.gke_sa_s3_bucket_name}\")"
+    title       = "comet_bucket_only_${each.key}"
+    expression  = "resource.name.startsWith(\"projects/_/buckets/${each.value}\")"
   }
 }
 

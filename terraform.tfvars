@@ -2,7 +2,7 @@
 #### Module toggles ####
 ########################
 # Provision a VPC to launch other resources in
-enable_vpc = false
+enable_vpc = true
 
 # Provision a Google Compute Engine VM for running Comet
 enable_vm = false
@@ -11,7 +11,7 @@ enable_vm = false
 enable_lb = false
 
 # Provision a GKE cluster for running Comet
-enable_gke = false
+enable_gke = true
 
 # Provision Memorystore resources for running Comet Redis
 enable_memorystore = false
@@ -20,13 +20,16 @@ enable_memorystore = false
 enable_mysql = false
 
 # Provision a GCS bucket for storing Comet objects
-enable_s3 = false
+enable_s3 = true
+
+# Provision GKE compute node pools for MPM
+enable_mpm_infra = false
 
 ################
 #### Global ####
 ################
 # Specify the GCP project ID
-project_id = "project-id"
+project_id = "onprem-test-214916"
 
 # If provisioning the resources in an existing VPC, set the variables below
 comet_vpc_zones       = ["zone-1", "zone-2", "zone-3"]

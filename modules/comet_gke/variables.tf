@@ -98,9 +98,9 @@ variable "gke_release_channel" {
   type        = string
 }
 
-variable "gke_sa_s3_bucket_name" {
-  description = "Name for GCS bucket to grant access via cluster service account"
-  type        = string
+variable "gke_sa_s3_bucket_names" {
+  description = "List of S3 bucket names to grant access to GKE cluster service account"
+  type        = list(string)
 }
 
 variable "gke_nodepool_machine_type" {
@@ -166,4 +166,39 @@ variable "gke_nodepool_auto_upgrade" {
 variable "gke_nodepool_preemptible" {
   description = "Sets nodes as preemptible"
   type        = bool
+}
+
+variable "enable_mpm_infra" {
+  description = "Sets node pools to be created for MPM compute"
+  type        = bool
+}
+
+variable "gke_nodepool_druid_count" {
+  description = "Number of nodes for Druid nodepool"
+  type        = number
+}
+
+variable "gke_nodepool_zookeeper_count" {
+  description = "Number of nodes for Zookeeper nodepool"
+  type        = number
+}
+
+variable "gke_nodepool_airflow_count" {
+  description = "Number of nodes for Airflow nodepool"
+  type        = number
+}
+
+variable "gke_nodepool_druid_machine" {
+  description = "Machine type for Druid nodepool"
+  type        = string
+}
+
+variable "gke_nodepool_zookeeper_machine" {
+  description = "Machine type for Zookeeper nodepool"
+  type        = string
+}
+
+variable "gke_nodepool_airflow_machine" {
+  description = "Machine type for Airflow nodepool"
+  type        = string
 }

@@ -13,7 +13,11 @@ module "comet_gke" {
   comet_vpc_subnet_name  = var.enable_vpc ? module.comet_vpc[0].comet_vpc_subnet_name : var.comet_vpc_subnet_name
   gke_pods_cidr_name     = var.enable_vpc ? module.comet_vpc[0].gke_pods_cidr_name : var.gke_pods_cidr_name
   gke_services_cidr_name = var.enable_vpc ? module.comet_vpc[0].gke_services_cidr_name : var.gke_services_cidr_name
-  gke_sa_s3_bucket_name  = var.enable_s3 ? module.comet_s3[0].storage_bucket_name : var.s3_existing_bucket_name
+  gke_sa_s3_bucket_names = concat(
+    var.enable_s3 ? [module.comet_s3[0].storage_bucket_name] : [],
+    var.enable_mpm_infra ? ["comet-${var.environment}-druid-bucket-${var.project_id}", "comet-${var.environment}-airflow-bucket-${var.project_id}"] : [],
+    var.enable_s3 ? [] : [var.s3_existing_bucket_name]
+  )
 
   gke_regional                        = var.gke_regional
   gke_kubernetes_version              = var.gke_kubernetes_version
@@ -41,6 +45,16 @@ module "comet_gke" {
   gke_nodepool_auto_repair     = var.gke_nodepool_auto_repair
   gke_nodepool_auto_upgrade    = var.gke_nodepool_auto_upgrade
   gke_nodepool_preemptible     = var.gke_nodepool_preemptible
+
+  enable_mpm_infra               = var.enable_mpm_infra
+  gke_nodepool_druid_count       = var.gke_nodepool_druid_count
+  gke_nodepool_druid_machine     = var.gke_nodepool_druid_machine
+  gke_nodepool_zookeeper_count   = var.gke_nodepool_zookeeper_count
+  gke_nodepool_zookeeper_machine = var.gke_nodepool_zookeeper_machine
+  gke_nodepool_airflow_count     = var.gke_nodepool_airflow_count
+  gke_nodepool_airflow_machine   = var.gke_nodepool_airflow_machine
+
+
 }
 
 module "comet_lb" {
@@ -115,6 +129,8 @@ module "comet_s3" {
   s3_storage_class               = var.s3_storage_class
   s3_uniform_bucket_level_access = var.s3_uniform_bucket_level_access
   s3_versioning                  = var.s3_versioning
+
+  enable_mpm_infra = var.enable_mpm_infra
 }
 
 module "comet_vm" {
