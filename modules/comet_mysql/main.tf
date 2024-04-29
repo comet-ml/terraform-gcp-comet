@@ -44,7 +44,7 @@ module "mysql" {
     },
     {
       name  = "thread_stack"
-      value = "2000000"
+      value = "6291456"
     },
     {
       name  = "collation_server"
@@ -57,10 +57,6 @@ module "mysql" {
     {
       name  = "log_bin_trust_function_creators"
       value = "on"
-    },
-    {
-      name = "thread_stack"
-      value = "6291456"
     }
   ]
 
